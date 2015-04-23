@@ -1,0 +1,50 @@
+\ProvidesFile{magyar.bbx}
+
+\DeclareLanguageMapping{magyar}{magyar}
+\RequireBibliographyStyle{authoryear}
+
+\renewcommand*{\finalnamedelim}{%
+  %\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\bibsstring{and}\space}
+
+\newbibmacro{names:separator}{%
+  \ifthenelse{\value{listcount}<\value{liststop}}%
+  {\addcomma\addspace}%
+  {}%
+ }
+
+\newbibmacro*{names:andothers}{%
+ \ifboolexpr{%
+   test {\ifnumequal{\value{listcount}}{\value{liststop}}}%
+   and%
+   test \ifmorenames%
+ }{\bibsstring{andothers}\addcomma}%
+ {}%
+}
+
+\def\@magyarbbx@hun{HUN}
+
+\DeclareNameFormat{sortname}{%
+  \begingroup%
+    \edef\juniorpart{#7}%
+    \ifx\juniorpart\@magyarbbx@hun%
+      % Hungarian name
+      \usebibmacro{name:first-last}{#3}{#1}{#5}{\relax}%
+    \else%
+      % English name
+      \ifnum\value{listcount}=1\relax%
+        \usebibmacro{name:last-first}{#1}{#3}{#5}{#7}%
+      \else%
+        \usebibmacro{name:first-last}{#1}{#3}{#5}{#7}%
+      \fi%
+    \fi%
+  \endgroup%
+}
+
+%\DeclareNameFormat{sortname}{%
+% \nameprint{#1}{#3}
+% \usebibmacro{names:separator}%
+% \usebibmacro{names:andothers}%
+% }
+
+\endinput

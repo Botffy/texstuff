@@ -1,0 +1,80 @@
+% $Id: magyar.lbx,v 0.01 $
+
+\ProvidesFile{magyar.lbx}
+\InheritBibliographyExtras{english}
+\InheritBibliographyStrings{english}
+[\abx@lbxid $Id: magyar.lbx,v 0.01 2011/01/12 19:18 dg testing $]
+
+% STATUS OF THIS FILE
+% * testing
+
+\DeclareRedundantLanguages{magyar}{magyar,
+hungarian}
+
+\DeclareBibliographyExtras{%
+ \protected\def\nameprint#1#2{#2\space#1}
+ \protected\def\mkbibordinal#1{\stripzeros{#1}\adddot}%
+  \protected\def\mkbibdatelong#1#2#3{%
+    \iffieldundef{#1}
+      {}
+      {\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}\adddot}%
+       \iffieldundef{#2}{}{\nobreakspace}%
+      }%
+    \iffieldundef{#2}
+      {}
+      {\mkbibmonth{\thefield{#2}}%
+       \iffieldundef{#3}{}{\nobreakspace}%
+      }%
+    \iffieldundef{#3}
+      {}
+      {\mkbibordinal{\thefield{#3}}}%
+    }%
+  \protected\def\mkbibdateshort#1#2#3{%
+    \iffieldundef{#1}
+      {}
+      {\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\mkdatezeros{\thefield{#1}\adddot}}%
+       \iffieldundef{#2}{}{\thinspace}}%
+    \iffieldundef{#2}
+      {}
+      {\mkdatezeros{\thefield{#2}\adddot}%
+       \iffieldundef{#3}{}{\thinspace}}%
+    \iffieldundef{#3}
+      {}
+      {\mkdatezeros{\thefield{#3}\adddot}}%
+    }%
+
+}
+
+
+
+\DeclareBibliographyStrings{%
+  bibliography     = {{Felhasznált\addspace{}irodalom}{Felhasznált\addspace{}irodalom}},
+  editor           = {{szerk\addot}{szerk\adddot}},
+  and              = {{és}{és}},
+  in               = {{in}{in}},
+  page             = {{oldal}{p\adddot}},
+  pages            = {{oldal}{pp\adddot}},
+  andothers        = {{et\addabbrvspace al\adddot}{et\addabbrvspace al\adddot}},
+  andmore          = {{et\addabbrvspace al\adddot}{et\addabbrvspace al\adddot}},
+  edition          = {{kiadás}{kiadás}},
+  references       = {{Hivatkozások jegyzéke}{Hivatkozások jegyzéke}},
+  urlseen          = {{utolsó elérés}{utolsó elérés}},
+  urlfrom          = {{URL: }{URL: }},
+  january          = {{január}{jan\adddot}},
+  february         = {{feburár}{feb\adddot}},
+  march            = {{március}{már\adddot}},
+  april            = {{április}{ápr\adddot}},
+  may              = {{május}{máj}},
+  june             = {{június}{jún}},
+  july             = {{július}{júl}},
+  august           = {{augusztus}{aug\adddot}},
+  september        = {{szeptember}{szept\adddot}},
+  october          = {{október}{okt\adddot}},
+  november         = {{november}{nov\adddot}},
+  december         = {{december}{dec\adddot}}
+}
+
+\DefineBibliographyStrings{magyar}{
+  url         = [Online]\adddot\addspace URL: %
+}
+\endinput
